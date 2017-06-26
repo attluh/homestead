@@ -1,7 +1,6 @@
 require 'json'
 require 'yaml'
 
-VAGRANTFILE_API_VERSION = "2"
 confDir = $confDir ||= File.expand_path("~/.homestead")
 
 homesteadYamlPath = confDir + "/Homestead.yaml"
@@ -11,7 +10,7 @@ aliasesPath = confDir + "/aliases"
 
 require File.expand_path(File.dirname(__FILE__) + '/scripts/homestead.rb')
 
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+Vagrant.configure("2") do |config|
     if File.exists? aliasesPath then
         config.vm.provision "file", source: aliasesPath, destination: "~/.bash_aliases"
     end
